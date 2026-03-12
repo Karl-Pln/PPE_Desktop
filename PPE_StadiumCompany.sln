@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36518.9 d17.14
+VisualStudioVersion = 17.14.36518.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPE_StadiumCompany", "PPE_StadiumCompany\PPE_StadiumCompany.csproj", "{4B72D4B6-1D81-4A69-8CAC-5154E6386702}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StadiumCompany", "PPE_StadiumCompany\StadiumCompany.csproj", "{4B72D4B6-1D81-4A69-8CAC-5154E6386702}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dataGridView", "dataGridView\dataGridView.csproj", "{190A37ED-E793-44A7-AF5F-7E497BA941AE}"
 EndProject

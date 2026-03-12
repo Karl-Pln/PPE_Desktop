@@ -1,16 +1,9 @@
-﻿namespace PPE_StadiumCompany
+﻿namespace StadiumCompany.Vues
 {
     partial class InscriptionForm
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,113 +15,95 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            btnInscription = new Button();
-            txtPrenom = new TextBox();
-            txtNom = new TextBox();
-            label1 = new Label();
-            MDP = new Label();
-            Nom = new Label();
-            txtLogin = new TextBox();
-            btnToConnexion = new Button();
-            label2 = new Label();
-            txtPassword = new TextBox();
+            btnInscription = new System.Windows.Forms.Button();
+            txtPrenom = new System.Windows.Forms.TextBox();
+            txtNom = new System.Windows.Forms.TextBox();
+            label1 = new System.Windows.Forms.Label();
+            MDP = new System.Windows.Forms.Label();
+            Nom = new System.Windows.Forms.Label();
+            txtLogin = new System.Windows.Forms.TextBox();
+            btnToConnexion = new System.Windows.Forms.Button();
+            label2 = new System.Windows.Forms.Label();
+            txtPassword = new System.Windows.Forms.TextBox();
             SuspendLayout();
-            // 
+
             // btnInscription
-            // 
-            btnInscription.Location = new Point(286, 269);
+            btnInscription.Location = new System.Drawing.Point(286, 269);
             btnInscription.Name = "btnInscription";
-            btnInscription.Size = new Size(132, 44);
+            btnInscription.Size = new System.Drawing.Size(132, 44);
             btnInscription.TabIndex = 0;
-            btnInscription.Text = "Inscription ";
+            btnInscription.Text = "Inscription";
             btnInscription.UseVisualStyleBackColor = true;
-            btnInscription.Click += btnInscription_Click;
-            // 
+            btnInscription.Click += new System.EventHandler(btnInscription_Click);
+
             // txtPrenom
-            // 
-            txtPrenom.Location = new Point(386, 46);
+            txtPrenom.Location = new System.Drawing.Point(386, 46);
             txtPrenom.Name = "txtPrenom";
-            txtPrenom.Size = new Size(174, 31);
+            txtPrenom.Size = new System.Drawing.Size(174, 31);
             txtPrenom.TabIndex = 1;
-            // 
+
             // txtNom
-            // 
-            txtNom.Location = new Point(386, 95);
+            txtNom.Location = new System.Drawing.Point(386, 95);
             txtNom.Name = "txtNom";
-            txtNom.Size = new Size(174, 31);
+            txtNom.Size = new System.Drawing.Size(174, 31);
             txtNom.TabIndex = 2;
-            // 
-            // label1
-            // 
+
+            // label1 - Login
             label1.AutoSize = true;
-            label1.Location = new Point(242, 151);
+            label1.Location = new System.Drawing.Point(242, 151);
             label1.Name = "label1";
-            label1.Size = new Size(56, 25);
             label1.TabIndex = 3;
             label1.Text = "Login";
-            // 
+
             // MDP
-            // 
             MDP.AutoSize = true;
-            MDP.Location = new Point(201, 203);
+            MDP.Location = new System.Drawing.Point(201, 203);
             MDP.Name = "MDP";
-            MDP.Size = new Size(120, 25);
             MDP.TabIndex = 4;
             MDP.Text = "Mot de passe";
-            // 
+
             // Nom
-            // 
             Nom.AutoSize = true;
-            Nom.Location = new Point(246, 101);
+            Nom.Location = new System.Drawing.Point(246, 101);
             Nom.Name = "Nom";
-            Nom.Size = new Size(52, 25);
             Nom.TabIndex = 5;
             Nom.Text = "Nom";
-            // 
+
             // txtLogin
-            // 
-            txtLogin.Location = new Point(386, 145);
+            txtLogin.Location = new System.Drawing.Point(386, 145);
             txtLogin.Name = "txtLogin";
-            txtLogin.Size = new Size(174, 31);
+            txtLogin.Size = new System.Drawing.Size(174, 31);
             txtLogin.TabIndex = 6;
-            // 
+
             // btnToConnexion
-            // 
-            btnToConnexion.Location = new Point(646, 394);
+            btnToConnexion.Location = new System.Drawing.Point(646, 394);
             btnToConnexion.Name = "btnToConnexion";
-            btnToConnexion.Size = new Size(142, 44);
+            btnToConnexion.Size = new System.Drawing.Size(142, 44);
             btnToConnexion.TabIndex = 7;
-            btnToConnexion.Text = "se connecter";
+            btnToConnexion.Text = "Se connecter";
             btnToConnexion.UseVisualStyleBackColor = true;
-            btnToConnexion.Click += btnToConnexion_Click;
-            // 
-            // label2
-            // 
+            btnToConnexion.Click += new System.EventHandler(btnToConnexion_Click);
+
+            // label2 - Prénom
             label2.AutoSize = true;
-            label2.Location = new Point(235, 52);
+            label2.Location = new System.Drawing.Point(235, 52);
             label2.Name = "label2";
-            label2.Size = new Size(74, 25);
             label2.TabIndex = 8;
             label2.Text = "Prénom";
-            // 
+
             // txtPassword
-            // 
-            txtPassword.Location = new Point(386, 203);
+            txtPassword.Location = new System.Drawing.Point(386, 203);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(174, 31);
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new System.Drawing.Size(174, 31);
             txtPassword.TabIndex = 9;
-            // 
+
             // InscriptionForm
-            // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(800, 450);
             Controls.Add(txtPassword);
             Controls.Add(label2);
             Controls.Add(btnToConnexion);
@@ -147,15 +122,15 @@
 
         #endregion
 
-        private Button btnInscription;
-        private TextBox txtPrenom;
-        private TextBox txtNom;
-        private Label label1;
-        private Label MDP;
-        private Label Nom;
-        private TextBox txtLogin;
-        private Button btnToConnexion;
-        private Label label2;
-        private TextBox txtPassword;
+        private System.Windows.Forms.Button btnInscription;
+        private System.Windows.Forms.TextBox txtPrenom;
+        private System.Windows.Forms.TextBox txtNom;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label MDP;
+        private System.Windows.Forms.Label Nom;
+        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.Button btnToConnexion;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }

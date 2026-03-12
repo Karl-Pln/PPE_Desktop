@@ -1,34 +1,26 @@
-﻿using PPE_StadiumCompany.Controleurs;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
-using PPE_StadiumCompany.DAO;
-using PPE_StadiumCompany.Modèles;
-using PPE_StadiumCompany;
+using StadiumCompany.Controllers;
+using StadiumCompany.Models;
 
-namespace PPE_StadiumCompany
+namespace StadiumCompany.Vues
 {
     public partial class ConnexionForm : Form
     {
-        private UtilisateurControleur controleur;
+        private UtilisateurController controller;
+
         public ConnexionForm()
         {
             InitializeComponent();
-            controleur = new UtilisateurControleur();
+            controller = new UtilisateurController();
         }
 
         private void btnConnexion_Click(object sender, EventArgs e)
         {
-            string login = txtLogin.Text;
-            string motDePasse = txtPassword.Text;
-
-            Utilisateur utilisateur = controleur.Connexion(login, motDePasse);
+            Utilisateur utilisateur = controller.Connexion(
+                txtLogin.Text,
+                txtPassword.Text
+            );
 
             if (utilisateur != null)
             {
@@ -49,7 +41,5 @@ namespace PPE_StadiumCompany
             inscriptionForm.Show();
             this.Hide();
         }
-
-        
     }
 }

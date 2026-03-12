@@ -1,42 +1,38 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows.Forms;
-using PPE_StadiumCompany.DAO;
-using PPE_StadiumCompany.Controleurs;
-using PPE_StadiumCompany.Mod�les;
-using PPE_StadiumCompany;
+using StadiumCompany.Controllers;
 
-
-namespace PPE_StadiumCompany
+namespace StadiumCompany.Vues
 {
     public partial class InscriptionForm : Form
     {
-        private UtilisateurControleur controleur;
+        private UtilisateurController controller;
+
         public InscriptionForm()
         {
             InitializeComponent();
-            controleur = new UtilisateurControleur();
+            controller = new UtilisateurController();
         }
 
         private void btnInscription_Click(object sender, EventArgs e)
         {
-            bool success = controleur.Inscription(
-            txtLogin.Text,
-            txtPassword.Text,
-            txtNom.Text,
-            txtPrenom.Text
+            bool success = controller.Inscrire(
+                txtLogin.Text,
+                txtPassword.Text,
+                txtNom.Text,
+                txtPrenom.Text
             );
 
             if (success)
             {
-                MessageBox.Show("Inscription r�ussie !");
+                MessageBox.Show("Inscription réussie !");
                 ConnexionForm connexion = new ConnexionForm();
                 connexion.Show();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("�chec de l'inscription.");
+                MessageBox.Show("Échec de l'inscription. Le login existe peut-être déjà.");
             }
         }
 

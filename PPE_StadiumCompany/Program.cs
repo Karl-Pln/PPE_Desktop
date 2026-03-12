@@ -1,4 +1,7 @@
-namespace PPE_StadiumCompany
+using System;
+using System.Windows.Forms;
+
+namespace StadiumCompany
 {
     internal static class Program
     {
