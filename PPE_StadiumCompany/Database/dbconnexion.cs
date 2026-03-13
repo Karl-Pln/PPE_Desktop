@@ -6,7 +6,7 @@ namespace StadiumCompany.Database
     {
         private static readonly string connectionString =
             "Server=localhost;" +
-            "Database=ppe_stadiumcompany;" +
+            "Database=stadiumcompany;" +
             "User=root;" +
             "Password=password;";
 
