@@ -25,7 +25,6 @@ namespace StadiumCompany.Vues
 
             if (success)
             {
-                MessageBox.Show("Inscription réussie !");
                 ConnexionForm connexion = new ConnexionForm();
                 connexion.Show();
                 this.Close();

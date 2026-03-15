@@ -18,15 +18,15 @@ CREATE TABLE theme (
 );
 
 
-
-
 -- 3. Table des questionnaires
 
 CREATE TABLE questionnaire (
     id       INT AUTO_INCREMENT PRIMARY KEY,
     nom      VARCHAR(200) NOT NULL,
     theme_id INT NOT NULL,
+  --  createur_id INT NOT NULL,
     FOREIGN KEY (theme_id) REFERENCES theme(id)
+  --  FOREIGN KEY (createur_id) REFERENCES utilisateurs(id)
 );
 
 
@@ -37,6 +37,7 @@ CREATE TABLE question (
     questionnaire_id  INT NOT NULL,
     libelle           TEXT NOT NULL,
     type_reponse      ENUM('VraiFaux', 'ListeValeurs') NOT NULL,
+  --  bonne_reponse    VARCHAR(10) DEFAULT NULL,
     ordre             INT DEFAULT 0,
     FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE CASCADE
 );

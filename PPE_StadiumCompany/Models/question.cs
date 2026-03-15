@@ -19,6 +19,7 @@ namespace StadiumCompany.Models
         public int QuestionnaireId { get; set; }
         public string Libelle { get; set; }
         public TypeReponse TypeReponse { get; set; }
+        public string BonneReponse { get; set; }
         public int Ordre { get; set; }
         public List<ReponsePossible> ReponsesPossibles { get; set; } = new List<ReponsePossible>();
     }

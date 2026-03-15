@@ -14,6 +14,7 @@ namespace StadiumCompany.Models
         public string Publie { get; set; }
         public int ThemeId { get; set; }
         public string ThemeLibelle { get; set; }
+        public int CreateurId { get; set; }
         public DateTime date_creation { get; set; }
 
         public List<Question> Questions { get; set; } = new List<Question>();

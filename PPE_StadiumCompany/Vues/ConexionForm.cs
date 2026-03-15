@@ -24,8 +24,8 @@ namespace StadiumCompany.Vues
 
             if (utilisateur != null)
             {
-                MessageBox.Show("Bienvenue !");
-                FormulaireListe mainForm = new FormulaireListe();
+                // On passe l'utilisateur connecté à FormulaireListe
+                FormulaireListe mainForm = new FormulaireListe(utilisateur);
                 mainForm.Show();
                 this.Hide();
             }

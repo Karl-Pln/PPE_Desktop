@@ -1,9 +1,9 @@
-﻿using MySql.Data.MySqlClient;
-using StadiumCompany.Models;
-using StadiumCompany.Database;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using StadiumCompany.Database;
+using StadiumCompany.Models;
 
 namespace StadiumCompany.DAO
 {
@@ -33,8 +33,11 @@ namespace StadiumCompany.DAO
                                     QuestionnaireId = questionnaireId,
                                     Libelle = reader["libelle"].ToString(),
                                     TypeReponse = reader["type_reponse"].ToString() == "VraiFaux"
-                                                         ? TypeReponse.VraiFaux
-                                                         : TypeReponse.ListeValeurs,
+                                                        ? TypeReponse.VraiFaux
+                                                        : TypeReponse.ListeValeurs,
+                                    BonneReponse = reader["bonne_reponse"] == DBNull.Value
+                                                        ? null
+                                                        : reader["bonne_reponse"].ToString(),
                                     Ordre = Convert.ToInt32(reader["ordre"])
                                 });
                             }
@@ -56,14 +59,15 @@ namespace StadiumCompany.DAO
                 using (MySqlConnection conn = dbConnexion.GetConnexion())
                 {
                     conn.Open();
-                    string sql = @"INSERT INTO question (questionnaire_id, libelle, type_reponse, ordre)
-                                   VALUES (@qid, @libelle, @type, @ordre);
+                    string sql = @"INSERT INTO question (questionnaire_id, libelle, type_reponse, bonne_reponse, ordre)
+                                   VALUES (@qid, @libelle, @type, @bonneReponse, @ordre);
                                    SELECT LAST_INSERT_ID();";
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@qid", q.QuestionnaireId);
                         cmd.Parameters.AddWithValue("@libelle", q.Libelle);
                         cmd.Parameters.AddWithValue("@type", q.TypeReponse.ToString());
+                        cmd.Parameters.AddWithValue("@bonneReponse", (object)q.BonneReponse ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@ordre", q.Ordre);
                         return Convert.ToInt32(cmd.ExecuteScalar());
                     }
@@ -83,11 +87,15 @@ namespace StadiumCompany.DAO
                 using (MySqlConnection conn = dbConnexion.GetConnexion())
                 {
                     conn.Open();
-                    string sql = "UPDATE question SET libelle = @libelle, type_reponse = @type, ordre = @ordre WHERE id = @id";
+                    string sql = @"UPDATE question
+                                   SET libelle = @libelle, type_reponse = @type,
+                                       bonne_reponse = @bonneReponse, ordre = @ordre
+                                   WHERE id = @id";
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@libelle", q.Libelle);
                         cmd.Parameters.AddWithValue("@type", q.TypeReponse.ToString());
+                        cmd.Parameters.AddWithValue("@bonneReponse", (object)q.BonneReponse ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@ordre", q.Ordre);
                         cmd.Parameters.AddWithValue("@id", q.Id);
                         cmd.ExecuteNonQuery();

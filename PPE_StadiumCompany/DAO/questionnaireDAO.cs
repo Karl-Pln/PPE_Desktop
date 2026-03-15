@@ -1,9 +1,9 @@
-﻿using MySql.Data.MySqlClient;
-using StadiumCompany.Models;
-using StadiumCompany.Database;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using StadiumCompany.Database;
+using StadiumCompany.Models;
 
 namespace StadiumCompany.DAO
 {
@@ -20,12 +20,13 @@ namespace StadiumCompany.DAO
                 {
                     conn.Open();
                     string sql = @"
-                        SELECT q.id, q.nom, q.theme_id, t.libelle AS theme_libelle,
+                        SELECT q.id, q.nom, q.theme_id, q.createur_id,
+                               t.libelle AS theme_libelle,
                                COUNT(qu.id) AS nb_questions
                         FROM questionnaire q
                         JOIN theme t ON t.id = q.theme_id
                         LEFT JOIN question qu ON qu.questionnaire_id = q.id
-                        GROUP BY q.id, q.nom, q.theme_id, t.libelle
+                        GROUP BY q.id, q.nom, q.theme_id, q.createur_id, t.libelle
                         ORDER BY q.nom";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
@@ -33,39 +34,83 @@ namespace StadiumCompany.DAO
                     {
                         while (reader.Read())
                         {
-                            var questionnaire = new Questionnaire
+                            var qst = new Questionnaire
                             {
                                 Id = Convert.ToInt32(reader["id"]),
                                 Nom = reader["nom"].ToString(),
                                 ThemeId = Convert.ToInt32(reader["theme_id"]),
-                                ThemeLibelle = reader["theme_libelle"].ToString()
+                                ThemeLibelle = reader["theme_libelle"].ToString(),
+                                CreateurId = Convert.ToInt32(reader["createur_id"])
                             };
                             int nb = Convert.ToInt32(reader["nb_questions"]);
-                            for (int i = 0; i < nb; i++) questionnaire.Questions.Add(new Question());
-                            liste.Add(questionnaire);
+                            for (int i = 0; i < nb; i++) qst.Questions.Add(new Question());
+                            liste.Add(qst);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur DAO GetAll questionnaires : " + ex.Message);
+                MessageBox.Show("Erreur DAO GetAll : " + ex.Message);
             }
             return liste;
         }
 
-        public int Ajouter(Questionnaire questionnaire)
+        public Questionnaire GetById(int id)
         {
             try
             {
                 using (MySqlConnection conn = dbConnexion.GetConnexion())
                 {
                     conn.Open();
-                    string sql = "INSERT INTO questionnaire (nom, theme_id) VALUES (@nom, @theme_id); SELECT LAST_INSERT_ID();";
+                    string sql = @"
+                        SELECT q.id, q.nom, q.theme_id, q.createur_id, t.libelle AS theme_libelle
+                        FROM questionnaire q
+                        JOIN theme t ON t.id = q.theme_id
+                        WHERE q.id = @id";
+
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@nom", questionnaire.Nom);
-                        cmd.Parameters.AddWithValue("@theme_id", questionnaire.ThemeId);
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new Questionnaire
+                                {
+                                    Id = Convert.ToInt32(reader["id"]),
+                                    Nom = reader["nom"].ToString(),
+                                    ThemeId = Convert.ToInt32(reader["theme_id"]),
+                                    ThemeLibelle = reader["theme_libelle"].ToString(),
+                                    CreateurId = Convert.ToInt32(reader["createur_id"])
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur DAO GetById : " + ex.Message);
+            }
+            return null;
+        }
+
+        public int Ajouter(Questionnaire q)
+        {
+            try
+            {
+                using (MySqlConnection conn = dbConnexion.GetConnexion())
+                {
+                    conn.Open();
+                    string sql = @"INSERT INTO questionnaire (nom, theme_id, createur_id)
+                                   VALUES (@nom, @theme_id, @createur_id);
+                                   SELECT LAST_INSERT_ID();";
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nom", q.Nom);
+                        cmd.Parameters.AddWithValue("@theme_id", q.ThemeId);
+                        cmd.Parameters.AddWithValue("@createur_id", q.CreateurId);
                         return Convert.ToInt32(cmd.ExecuteScalar());
                     }
                 }
@@ -77,7 +122,7 @@ namespace StadiumCompany.DAO
             return -1;
         }
 
-        public bool Modifier(Questionnaire questionnaire)
+        public bool Modifier(Questionnaire q)
         {
             try
             {
@@ -87,9 +132,9 @@ namespace StadiumCompany.DAO
                     string sql = "UPDATE questionnaire SET nom = @nom, theme_id = @theme_id WHERE id = @id";
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@nom", questionnaire.Nom);
-                        cmd.Parameters.AddWithValue("@theme_id", questionnaire.ThemeId);
-                        cmd.Parameters.AddWithValue("@id", questionnaire.Id);
+                        cmd.Parameters.AddWithValue("@nom", q.Nom);
+                        cmd.Parameters.AddWithValue("@theme_id", q.ThemeId);
+                        cmd.Parameters.AddWithValue("@id", q.Id);
                         cmd.ExecuteNonQuery();
                         return true;
                     }
