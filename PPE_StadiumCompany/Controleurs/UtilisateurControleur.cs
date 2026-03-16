@@ -14,7 +14,7 @@ namespace StadiumCompany.Controllers
                 return null;
             }
             string Passwordhash = HashPassword(password);
-            return dao.Connexion(login, password);
+            return dao.Connexion(login, Passwordhash);
         }
 
         public bool Inscrire(string login, string password, string nom, string prenom)
@@ -29,15 +29,15 @@ namespace StadiumCompany.Controllers
             {
                 return false;
             }
+            string Passwordhash = HashPassword(password);
 
             var utilisateur = new Utilisateur
             {
                 Login = login,
-                Password = password,
+                Password = Passwordhash,
                 Nom = nom,
                 Prenom = prenom
             };
-            string Passwordhash = HashPassword(password);
             return dao.Inscrire(utilisateur);
         }
 

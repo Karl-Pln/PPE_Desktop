@@ -14,6 +14,7 @@ namespace StadiumCompany.Models
         public string Password { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
+        public bool IsAdmin { get; set; }
         public DateTime DateCreation { get; set; }
     }
 }

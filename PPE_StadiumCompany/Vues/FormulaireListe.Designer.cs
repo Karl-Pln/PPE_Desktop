@@ -7,9 +7,7 @@
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
@@ -20,12 +18,13 @@
             questionnaires = new DataGridView();
             ajouterQuestionnaire = new Button();
             button1 = new Button();
-            groupBox1 = new GroupBox();
-            button3 = new Button();
             button2 = new Button();
+            button3 = new Button();
+            groupBox1 = new GroupBox();
             Modif_NomQuestionnaire = new TextBox();
             label2 = new Label();
             label1 = new Label();
+            btnSignalements = new Button();
             btnDeconnexion = new Button();
             ((System.ComponentModel.ISupportInitialize)questionnaires).BeginInit();
             groupBox1.SuspendLayout();
@@ -44,7 +43,7 @@
             // 
             ajouterQuestionnaire.Location = new Point(651, 31);
             ajouterQuestionnaire.Name = "ajouterQuestionnaire";
-            ajouterQuestionnaire.Size = new Size(120, 59);
+            ajouterQuestionnaire.Size = new Size(120, 50);
             ajouterQuestionnaire.TabIndex = 1;
             ajouterQuestionnaire.Text = "Nouveau";
             ajouterQuestionnaire.UseVisualStyleBackColor = true;
@@ -52,27 +51,23 @@
             // 
             // button1
             // 
-            button1.Location = new Point(825, 31);
+            button1.Location = new Point(785, 31);
             button1.Name = "button1";
-            button1.Size = new Size(111, 59);
+            button1.Size = new Size(100, 50);
             button1.TabIndex = 2;
             button1.Text = "Modifier";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // groupBox1
+            // button2
             // 
-            groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(Modif_NomQuestionnaire);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(666, 138);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(270, 205);
-            groupBox1.TabIndex = 3;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Détails modification";
+            button2.Location = new Point(152, 155);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 3;
+            button2.Text = "Supprimer";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -84,15 +79,19 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // button2
+            // groupBox1
             // 
-            button2.Location = new Point(152, 155);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 3;
-            button2.Text = "Supprimer";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            groupBox1.Controls.Add(button3);
+            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(Modif_NomQuestionnaire);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Location = new Point(651, 138);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(270, 205);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Détails modification";
             // 
             // Modif_NomQuestionnaire
             // 
@@ -118,14 +117,27 @@
             label1.Size = new Size(0, 25);
             label1.TabIndex = 0;
             // 
+            // btnSignalements
+            // 
+            btnSignalements.BackColor = Color.OrangeRed;
+            btnSignalements.ForeColor = Color.White;
+            btnSignalements.Location = new Point(707, 367);
+            btnSignalements.Name = "btnSignalements";
+            btnSignalements.Size = new Size(150, 45);
+            btnSignalements.TabIndex = 5;
+            btnSignalements.Text = "Signalements";
+            btnSignalements.UseVisualStyleBackColor = false;
+            btnSignalements.Visible = false;
+            btnSignalements.Click += btnSignalements_Click;
+            // 
             // btnDeconnexion
             // 
-            btnDeconnexion.BackColor = Color.IndianRed;
+            btnDeconnexion.BackColor = Color.Gray;
             btnDeconnexion.ForeColor = Color.White;
-            btnDeconnexion.Location = new Point(40, 350);
+            btnDeconnexion.Location = new Point(148, 367);
             btnDeconnexion.Name = "btnDeconnexion";
-            btnDeconnexion.Size = new Size(145, 40);
-            btnDeconnexion.TabIndex = 4;
+            btnDeconnexion.Size = new Size(130, 45);
+            btnDeconnexion.TabIndex = 6;
             btnDeconnexion.Text = "Déconnexion";
             btnDeconnexion.UseVisualStyleBackColor = false;
             btnDeconnexion.Click += btnDeconnexion_Click;
@@ -139,6 +151,7 @@
             Controls.Add(button1);
             Controls.Add(ajouterQuestionnaire);
             Controls.Add(questionnaires);
+            Controls.Add(btnSignalements);
             Controls.Add(btnDeconnexion);
             Name = "FormulaireListe";
             Text = "Liste des questionnaires";
@@ -159,6 +172,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSignalements;
         private System.Windows.Forms.Button btnDeconnexion;
     }
 }

@@ -18,11 +18,12 @@ namespace StadiumCompany.Vues
             utilisateurConnecte = utilisateur;
 
             groupBox1.Visible = false;
+
+            // Bouton signalements visible uniquement pour les admins
+            btnSignalements.Visible = utilisateurConnecte.IsAdmin;
+
             ConfigurerGrille();
             ChargerQuestionnaires();
-
-            // Double-clic sur une ligne → ouvrir QuestionnaireDetail
-            questionnaires.CellDoubleClick += new DataGridViewCellEventHandler(questionnaires_CellDoubleClick);
         }
 
         private void ConfigurerGrille()
@@ -61,28 +62,6 @@ namespace StadiumCompany.Vues
             return createurId == utilisateurConnecte.Id;
         }
 
-        // Double-clic → ouvrir QuestionnaireDetail
-        private void questionnaires_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            int id = Convert.ToInt32(questionnaires.Rows[e.RowIndex].Cells["id"].Value);
-            string nom = questionnaires.Rows[e.RowIndex].Cells["nom"].Value.ToString();
-            string theme = questionnaires.Rows[e.RowIndex].Cells["theme"].Value.ToString();
-            int createurId = Convert.ToInt32(questionnaires.Rows[e.RowIndex].Cells["createurId"].Value);
-
-            var questionnaire = new Questionnaire
-            {
-                Id = id,
-                Nom = nom,
-                ThemeLibelle = theme,
-                CreateurId = createurId
-            };
-
-            var detail = new QuestionnaireDetail(utilisateurConnecte, questionnaire);
-            detail.ShowDialog();
-        }
-
         // Bouton "Nouveau"
         private void ajouterQuestionnaire_Click(object sender, EventArgs e)
         {
@@ -91,7 +70,7 @@ namespace StadiumCompany.Vues
             ChargerQuestionnaires();
         }
 
-        // Bouton "Modifier" - vérifie créateur puis ouvre AjouterFormulaire pré-rempli
+        // Bouton "Modifier"
         private void button1_Click(object sender, EventArgs e)
         {
             if (questionnaires.SelectedRows.Count == 0)
@@ -143,12 +122,18 @@ namespace StadiumCompany.Vues
                     ChargerQuestionnaires();
                 }
                 else
-                {
                     MessageBox.Show("Échec de la suppression.");
-                }
             }
         }
 
+        // Bouton "Signalements" - admin uniquement
+        private void btnSignalements_Click(object sender, EventArgs e)
+        {
+            ListeSignalements listeSignalements = new ListeSignalements();
+            listeSignalements.ShowDialog();
+        }
+
+        // Bouton "Déconnexion"
         private void btnDeconnexion_Click(object sender, EventArgs e)
         {
             ConnexionForm connexionForm = new ConnexionForm();

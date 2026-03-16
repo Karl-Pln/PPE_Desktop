@@ -1,8 +1,8 @@
-﻿using MySql.Data.MySqlClient;
-using StadiumCompany.Models;
-using StadiumCompany.Database;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using StadiumCompany.Database;
+using StadiumCompany.Models;
 
 namespace StadiumCompany.DAO
 {
@@ -26,13 +26,14 @@ namespace StadiumCompany.DAO
                         {
                             if (reader.Read())
                             {
-                                return new Utilisateur()
+                                return new Utilisateur
                                 {
                                     Id = Convert.ToInt32(reader["id"]),
                                     Login = reader["login"].ToString(),
                                     Password = reader["password"].ToString(),
                                     Nom = reader["nom"].ToString(),
-                                    Prenom = reader["prenom"].ToString()
+                                    Prenom = reader["prenom"].ToString(),
+                                    IsAdmin = Convert.ToBoolean(reader["is_admin"])
                                 };
                             }
                         }
