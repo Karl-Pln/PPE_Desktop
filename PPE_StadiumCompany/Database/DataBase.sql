@@ -6,7 +6,8 @@ CREATE TABLE utilisateurs (
     login    VARCHAR(150) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     nom      VARCHAR(100) NOT NULL,
-    prenom   VARCHAR(100) NOT NULL
+    prenom   VARCHAR(100) NOT NULL,
+    is_admin TINYINT(1) DEFAULT 0
 );
 
 
@@ -37,7 +38,7 @@ CREATE TABLE question (
     questionnaire_id  INT NOT NULL,
     libelle           TEXT NOT NULL,
     type_reponse      ENUM('VraiFaux', 'ListeValeurs') NOT NULL,
-  --  bonne_reponse    VARCHAR(10) DEFAULT NULL,
+    bonne_reponse    VARCHAR(10) DEFAULT NULL,
     ordre             INT DEFAULT 0,
     FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE CASCADE
 );
@@ -52,4 +53,19 @@ CREATE TABLE reponse_possible (
     est_correcte TINYINT(1) DEFAULT 0,
     poids       INT DEFAULT 0,
     FOREIGN KEY (question_id) REFERENCES question(id) ON DELETE CASCADE
+);
+
+-- 6. Table des signalements
+
+CREATE TABLE signalement (
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    id_utilisateur INT NOT NULL,
+    id_question INT NOT NULL,
+    id_questionnaire INT NOT NULL,
+    message  TEXT NOT NULL,
+    date_envoi DATETIME DEFAULT CURRENT_TIMESTAMP,
+    statut ENUM('corrigé', 'à corriger', 'en correction') DEFAULT 'à corriger',
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_question) REFERENCES question(id) ON DELETE CASCADE
+    FOREIGN KEY (id_questionnaire) REFERENCES questionnaire(id) ON DELETE CASCADE
 );
