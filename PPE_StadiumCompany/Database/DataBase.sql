@@ -66,6 +66,6 @@ CREATE TABLE signalement (
     date_envoi DATETIME DEFAULT CURRENT_TIMESTAMP,
     statut ENUM('corrigé', 'à corriger', 'en correction') DEFAULT 'à corriger',
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE,
-    FOREIGN KEY (id_question) REFERENCES question(id) ON DELETE CASCADE
+    FOREIGN KEY (id_question) REFERENCES question(id) ON DELETE CASCADE,
     FOREIGN KEY (id_questionnaire) REFERENCES questionnaire(id) ON DELETE CASCADE
 );

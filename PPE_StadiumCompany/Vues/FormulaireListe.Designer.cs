@@ -41,6 +41,10 @@
             // 
             // ajouterQuestionnaire
             // 
+            ajouterQuestionnaire.BackColor = Color.FromArgb(214, 214, 214);
+            ajouterQuestionnaire.ForeColor = Color.Black;
+            ajouterQuestionnaire.FlatStyle = FlatStyle.Flat;
+            ajouterQuestionnaire.FlatAppearance.BorderSize = 0;
             ajouterQuestionnaire.Location = new Point(651, 31);
             ajouterQuestionnaire.Name = "ajouterQuestionnaire";
             ajouterQuestionnaire.Size = new Size(120, 50);
@@ -51,6 +55,10 @@
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(214, 214, 214);
+            button1.ForeColor = Color.Black;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.FlatAppearance.BorderSize = 0;
             button1.Location = new Point(785, 31);
             button1.Name = "button1";
             button1.Size = new Size(100, 50);
@@ -61,6 +69,10 @@
             // 
             // button2
             // 
+            button2.BackColor = Color.FromArgb(214, 214, 214);
+            button2.ForeColor = Color.Black;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.FlatAppearance.BorderSize = 0;
             button2.Location = new Point(152, 155);
             button2.Name = "button2";
             button2.Size = new Size(112, 34);
@@ -71,6 +83,10 @@
             // 
             // button3
             // 
+            button3.BackColor = Color.FromArgb(214, 214, 214);
+            button3.ForeColor = Color.Black;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.FlatAppearance.BorderSize = 0;
             button3.Location = new Point(23, 155);
             button3.Name = "button3";
             button3.Size = new Size(112, 34);
@@ -99,6 +115,9 @@
             Modif_NomQuestionnaire.Name = "Modif_NomQuestionnaire";
             Modif_NomQuestionnaire.Size = new Size(150, 31);
             Modif_NomQuestionnaire.TabIndex = 2;
+            Modif_NomQuestionnaire.Font = new Font("Segoe UI", 10);
+            Modif_NomQuestionnaire.BackColor = Color.WhiteSmoke;
+            Modif_NomQuestionnaire.BorderStyle = BorderStyle.FixedSingle;
             // 
             // label2
             // 
@@ -119,8 +138,10 @@
             // 
             // btnSignalements
             // 
-            btnSignalements.BackColor = Color.OrangeRed;
-            btnSignalements.ForeColor = Color.White;
+            btnSignalements.BackColor = Color.FromArgb(214, 214, 214);
+            btnSignalements.ForeColor = Color.Black;
+            btnSignalements.FlatStyle = FlatStyle.Flat;
+            btnSignalements.FlatAppearance.BorderSize = 0;
             btnSignalements.Location = new Point(707, 367);
             btnSignalements.Name = "btnSignalements";
             btnSignalements.Size = new Size(150, 45);
@@ -132,8 +153,10 @@
             // 
             // btnDeconnexion
             // 
-            btnDeconnexion.BackColor = Color.Gray;
-            btnDeconnexion.ForeColor = Color.White;
+            btnDeconnexion.BackColor = Color.FromArgb(214, 214, 214);
+            btnDeconnexion.ForeColor = Color.Black;
+            btnDeconnexion.FlatStyle = FlatStyle.Flat;
+            btnDeconnexion.FlatAppearance.BorderSize = 0;
             btnDeconnexion.Location = new Point(148, 367);
             btnDeconnexion.Name = "btnDeconnexion";
             btnDeconnexion.Size = new Size(130, 45);

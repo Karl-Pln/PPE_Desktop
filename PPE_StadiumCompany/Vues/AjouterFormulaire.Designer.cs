@@ -204,7 +204,7 @@
             dgvReponses.AllowUserToAddRows = false;
             dgvReponses.ColumnHeadersHeight = 34;
             dgvReponses.Columns.AddRange(new DataGridViewColumn[] { colReponseLibelle, colReponseCorrecte });
-            dgvReponses.Location = new Point(40, 29);
+            dgvReponses.Location = new Point(40, 36);
             dgvReponses.Name = "dgvReponses";
             dgvReponses.RowHeadersVisible = false;
             dgvReponses.RowHeadersWidth = 62;
@@ -227,7 +227,7 @@
             // 
             // txtNouvelleReponse
             // 
-            txtNouvelleReponse.Location = new Point(12, 155);
+            txtNouvelleReponse.Location = new Point(12, 162);
             txtNouvelleReponse.Name = "txtNouvelleReponse";
             txtNouvelleReponse.PlaceholderText = "Nouvelle réponse...";
             txtNouvelleReponse.Size = new Size(200, 31);
@@ -235,7 +235,7 @@
             // 
             // btnAjouterReponse
             // 
-            btnAjouterReponse.Location = new Point(293, 155);
+            btnAjouterReponse.Location = new Point(296, 162);
             btnAjouterReponse.Name = "btnAjouterReponse";
             btnAjouterReponse.Size = new Size(100, 31);
             btnAjouterReponse.TabIndex = 2;
@@ -297,7 +297,6 @@
             btnNouvelleQuestion.Text = "Nouvelle question";
             btnNouvelleQuestion.UseVisualStyleBackColor = false;
             btnNouvelleQuestion.Click += btnNouvelleQuestion_Click;
-            
             // 
             // AjouterFormulaire
             // 
@@ -317,7 +316,6 @@
             Controls.Add(dataGridView1);
             Controls.Add(button2);
             Controls.Add(btnSupprimerQuestion);
-            
             Name = "AjouterFormulaire";
             Text = "Ajouter un questionnaire";
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
